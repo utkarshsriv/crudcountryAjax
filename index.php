@@ -1,11 +1,6 @@
 <?php
 include_once 'conn.php';
-if (isset($_POST['submit'])) {
-  # code...
-  $name = strip_tags($_POST['country_name']);
 
-  $obj->insert($name);
-}
 include_once 'nav.php';
 include_once 'country.php';
 include_once 'stateui.php';
@@ -15,6 +10,8 @@ include_once 'all.php';
  <div class="container fill-box-all">
             <h3>Please Select Country, State and fill the City name</h3>
             <form action="city.php" method='post'>
+      <input type="text" name="_token" value="<?php echo $_SESSION['token'] ?>" hidden>
+
                  <!-- Country dropdown's coding started here -->
                  <div class="form-group">
                     <label for="countryAjax">Country Name</label>
@@ -47,21 +44,19 @@ include_once 'all.php';
                         
                         <option selected>Please Select Your State</option>
                         <?php
-                        $query = 'select * from location where type="2"';
-                        $stmt = $conn->prepare($query);
-                        $res = $stmt->execute();
+                        // $query = 'select * from location where type="2"';
+                        // $stmt = $conn->prepare($query);
+                        // $res = $stmt->execute();
 
-                        for ($i = 1; $i <= $row = $stmt->fetch(PDO::FETCH_ASSOC); $i++) {
+                        // for ($i = 1; $i <= $row = $stmt->fetch(PDO::FETCH_ASSOC); $i++) {
 
-                            # code...
+                        //     # code...
 
                         ?>
 
-                            <option value="<?php echo $row['id']; ?>"><?php echo $row['Name'];  ?>
-
-                            </option>
+    <option value="1">Select Country First</option>
                         <?php
-                        }
+                        // }
                         ?>
                     </select>
                 </div>
@@ -72,21 +67,21 @@ include_once 'all.php';
                         
                         <option selected>Please Select Your City</option>
                         <?php
-                        $query = 'select * from location where type="3"';
-                        $stmt = $conn->prepare($query);
-                        $res = $stmt->execute();
+                        // $query = 'select * from location where type="3"';
+                        // $stmt = $conn->prepare($query);
+                        // $res = $stmt->execute();
 
-                        for ($i = 1; $i <= $row = $stmt->fetch(PDO::FETCH_ASSOC); $i++) {
+                        // for ($i = 1; $i <= $row = $stmt->fetch(PDO::FETCH_ASSOC); $i++) {
 
-                            # code...
+                        //     # code...
 
                         ?>
 
-                            <option value="<?php echo $row['id']; ?>"><?php echo $row['Name'];  ?>
+                            <option value="1">Select State First
 
                             </option>
                         <?php
-                        }
+                        // }
                         ?>
                     </select>
                 </div>

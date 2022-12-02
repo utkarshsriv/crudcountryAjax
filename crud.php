@@ -17,7 +17,7 @@ class CRUD
         $row = $stmt->execute();
 
         if ($row) {
-            header('location:index.php');
+            // header('location:index.php');
         }
         else {
             echo 'not inserted';

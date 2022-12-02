@@ -24,6 +24,8 @@ if (isset($_POST['submit'])) {
        <div class="container">
            <h3>Please enter the country name</h3>
        <form action=""method='post'>
+      <input type="text" name="_token" value="<?php echo $_SESSION['token'] ?>" hidden>
+
   <div class="form-group">
     <label for="country_name">Country Name</label>
     <input type="text" class="form-control" name='country_name' id="country_name" aria-describedby="emailHelp" placeholder="Enter Country Name" value="<?php echo $row['Name']?>">

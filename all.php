@@ -8,9 +8,11 @@
             <h3>Please Select Country, State and fill the City name</h3>
             <form action="city.php" method='post'>
                  <!-- Country dropdown's coding started here -->
+      <input type="text" name="_token" value="<?php echo $_SESSION['token'] ?>" hidden>
+
                  <div class="form-group">
                     <label for="country_name1">Country Name</label>
-                    <select class="custom-select custom-select-lg mb-3" id="country_name1" name="country_id">
+                    <select class="custom-select custom-select-lg mb-3" id="country_name1" name="country_id" required>
                         
                         <option selected>Please Select Your Country</option>
                         <?php
@@ -35,7 +37,7 @@
                 <!-- State dropdown's coding started here -->
                 <div class="form-group">
                     <label for="State">State</label>
-                    <select class="custom-select custom-select-lg mb-3" id="state" name="state_id">
+                    <select class="custom-select custom-select-lg mb-3" id="state" name="state_id" required>
                         
                         <option selected>Please Select Your State</option>
                         <?php
@@ -59,7 +61,7 @@
                 </div>
                 <div class="form-group">
                     <label for="city">City</label>
-                    <input type="text" class="form-control" name='city' id="city" aria-describedby="emailHelp" placeholder="Enter Country Name">
+                    <input type="text" class="form-control" name='city' id="city" aria-describedby="emailHelp" placeholder="Enter City Name" required>
                 </div>
                 <button type="submit" class="btn btn-primary" name="citysubmit">Submit</button>
             </form>

@@ -6,9 +6,11 @@
     <div class="col-md-4 fill-box ">
       <h3>Please Select Country and fill the state name</h3>
       <form action="state.php" method='post'>
+      <input type="text" name="_token" value="<?php echo $_SESSION['token'] ?>" hidden>
+
         <div class="form-group">
           <label for="country_name1">Country Name</label>
-          <select class="custom-select custom-select-lg mb-3" id="country_name1" name="country_id">
+          <select class="custom-select custom-select-lg mb-3" id="country_name1" name="country_id" required>
             
             <option selected>Please Select Your Country</option>
             <?php
@@ -32,7 +34,7 @@
         </div>
         <div class="form-group">
           <label for="State">State</label>
-          <input type="text" class="form-control" name='State' id="State" aria-describedby="emailHelp" placeholder="Enter Country Name">
+          <input type="text" class="form-control" name='State' id="State" aria-describedby="emailHelp" placeholder="Enter State Name" required>
         </div>        
         <button type="submit" class="btn btn-primary" name="statesubmit">Submit</button>
       </form>

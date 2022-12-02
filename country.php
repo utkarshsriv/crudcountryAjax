@@ -1,3 +1,30 @@
+<?php
+if (isset($_POST['submit'])) {
+if (isset($_SESSION['token'])) {
+  if (isset($_POST['_token'])) {
+     
+      if ($_POST['_token'] == $_SESSION['token']) 
+      {
+          
+              # code...
+              $name = strip_tags($_POST['country_name']);
+            
+              $obj->insert($name);
+      }else 
+      {
+          header('location:index.php?token="unmatched"');
+      }
+            
+      }else {
+        header('location:index.php?userToken="false"');
+    }
+  }else{
+    header('location:index.php?token="false"');
+  
+  }
+}
+?>
+
 <div class="container-fluid my-4">
   <h2 >Welcome to Our CountryCrud Website!</h2>
 </div>
@@ -6,9 +33,11 @@
     <div class="col-md-4 fill-box">
       <h3>Please enter the country name</h3>
       <form action="" method='post'>
+      <input type="hidden" name="_token" value="<?php echo $_SESSION['token']; ?>" >
+
         <div class="form-group">
           <label for="country_name">Country Name</label>
-          <input type="text" class="form-control" name='country_name' id="country_name" aria-describedby="emailHelp" placeholder="Enter Country Name">
+          <input type="text" class="form-control" name='country_name' id="country_name" aria-describedby="emailHelp" placeholder="Enter Country Name" required>
         </div>
 
 
