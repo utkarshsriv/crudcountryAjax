@@ -1,16 +1,18 @@
 <?php
 
 include_once 'conn.php';
-$id=$_POST['id'];
-$query="sele/ct * from location where id = $id and type='2'";
+$id=$_GET['id'];
+$query="select * from location where parent_id = '$id' and type='2' ";
 $stmt=$conn->prepare($query);
 $res=$stmt->execute();
 ?>
-<option value="">Select State</option>
+<option value="">Select City</option>
 <?php
+$str="";
 while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-?>
-    <option value="<?php echo $row['id']; ?>"><?php echo $row['Name'];?></option>
-    <?php
+
+ $str.= "<option value='{$row ['id']}'>{$row ['Name']}</option>";
+
 }
+echo $str;
 ?>

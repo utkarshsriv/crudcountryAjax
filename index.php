@@ -43,7 +43,7 @@ include_once 'all.php';
                 <!-- State dropdown's coding started here -->
                 <div class="form-group">
                     <label for="StateAjax">State</label>
-                    <select class="custom-select custom-select-lg mb-3" id="StateAjax" name="StateAjax">
+                    <select class="custom-select custom-select-lg mb-3" id="StateAjax" name="StateAjax" onchange="get_city('StateAjax')">
                         
                         <option selected>Please Select Your State</option>
                         <?php
@@ -128,21 +128,37 @@ $(document).ready(function () {
 
 function get_state(get_id)
 {
-  alert(get_id);
-  var id=$('#'+get_id).val();
-  alert(id);
-  $.ajax({
-    url:"getstate.php",
-    type:"GET",
-    success:function(result)
-    {
-      alert(result);
-
+     let data= document.getElementById(get_id).value;
+    // alert(data);
+    
+  const ajaxreq= new XMLHttpRequest();
+  ajaxreq.open('GET','getstate.php?id='+data,'true');
+  ajaxreq.send();
+  ajaxreq.onreadystatechange= function(){
+    if(ajaxreq.readyState == 4 && ajaxreq.status == 200){
+        document.getElementById('StateAjax').innerHTML=ajaxreq.responseText;
+    }else{
+        document.getElementById('StateAjax').innerHTML='Not found';
     }
-  })
-
-
+  }
 }
+function get_city(get_id)
+{
+     let data= document.getElementById(get_id).value;
+    // alert(data);
+    
+  const ajaxreq= new XMLHttpRequest();
+  ajaxreq.open('GET','getcity.php?id='+data,'true');
+  ajaxreq.send();
+  ajaxreq.onreadystatechange= function(){
+    if(ajaxreq.readyState == 4 && ajaxreq.status == 200){
+        document.getElementById('CityAjax').innerHTML=ajaxreq.responseText;
+    }else{
+        document.getElementById('CityAjax').innerHTML='Not found';
+    }
+  }
+}
+
     // $.ajax({
     //   url:'getstate.php',
     //   type:'POST',
